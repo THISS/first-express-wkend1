@@ -36,6 +36,7 @@ APP.set('view engine', 'ejs');
 
 // blog home
 APP.get('/', (req, res) => {
+  // Express will automatically check the views folder for `home`
   res.render('home', {posts: POSTS});
 });
 
@@ -43,9 +44,11 @@ APP.get('/', (req, res) => {
 APP.get('/post/:id', (req, res) => {
   // find the post in the `POSTS` ARRAY
   const post = POSTS.filter((post) => {
-    return post.id === req.params.id;   /*******. could cause problems if one is a string and one is a number type *****/
+    /*******. could cause problems if one is a string and one is a number type *****/
+    return post.id === req.params.id;
   })[0];
 
+  // again express auto looks in the views folder
   res.render('post', {
     author: post.author,
     title: post.title,
