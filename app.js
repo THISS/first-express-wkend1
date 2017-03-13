@@ -44,8 +44,8 @@ APP.get('/', (req, res) => {
 APP.get('/post/:id', (req, res) => {
   // find the post in the `POSTS` ARRAY
   const post = POSTS.filter((post) => {
-    /*******. could cause problems if one is a string and one is a number type and it did... re adjusted === to == *****/
-    return post.id == req.params.id;
+    /*******. could cause problems if one is a string and one is a number type and it did... wanted === so *****/
+    return post.id === Number(req.params.id);
   })[0];
 
   // again express auto looks in the views folder
